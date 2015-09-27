@@ -1,0 +1,8 @@
+/*
+*
+*	Do note that most of my other code can be found on:
+*		- Github
+*		- Dropbox
+*
+*	Last Updated: 8/18/14
+*/

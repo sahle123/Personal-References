@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1340742517 source:c:\users\admin\documents\code_blocks_projects\assignment1\main.cpp
+	<iostream>
+	<cstdlib>
+	"point.h"
+	"line.h"
+
+1340710343 c:\users\admin\documents\code_blocks_projects\assignment1\point.h
+	<math.h>
+	<iostream>
+
+1340879059 c:\users\admin\documents\code_blocks_projects\assignment1\line.h
+	"point.h"
+

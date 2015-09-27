@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1353965840 source:c:\users\admin\documents\code_blocks_projects\mastermind_game\main.cpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	"nomad_array.h"
+	"Mastermind_class.h"
+
+1356613393 source:c:\users\admin\documents\code_blocks_projects\mastermind_game\mastermind_implementation.cpp
+	"Mastermind_class.h"
+	"peg_class.h"
+	<stdio.h>
+	<cstdlib>
+
+1357235115 c:\users\admin\documents\code_blocks_projects\mastermind_game\mastermind_class.h
+	<iostream>
+	"peg_class.h"
+
+1353669183 c:\users\admin\documents\code_blocks_projects\mastermind_game\peg_class.h
+
+1353954951 c:\users\admin\documents\code_blocks_projects\mastermind_game\nomad_stack.h
+
+1353958662 c:\users\admin\documents\code_blocks_projects\mastermind_game\nomad_array.h
+	"peg_class.h"
+
+1357678355 source:c:\users\admin\documents\code_blocks_projects\mastermind_game\clearscreen_implementation.cpp
+	<windows.h>
+	"clearscreen.h"
+
+1357678327 c:\users\admin\documents\code_blocks_projects\mastermind_game\clearscreen.h
+

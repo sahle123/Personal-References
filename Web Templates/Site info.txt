@@ -1,0 +1,22 @@
+/*
+*	Hosting info needed.
+*	4/15/15
+*
+*/
+
+1.) Buy domain name (Most important)
+
+	Must have an ICANN accredited registrar. Otherwise, bullshit ensues.
+	Checkout:	http://www.thesitewizard.com/gettingstarted/cost-setting-up-website.shtml
+			https://www.namecheap.com/domains/registration/gtld/com.aspx
+			https://www.website.com/beginnerguide/registeringdomain/4/4/does-it-matter-where-i-purchase-my-domain-name?.ws
+			https://www.easydns.com/i-want-to-receive-email-at-my-own-domain/
+	Scams to avoid->https://www.easydns.com/10-things-to-know-before-you-register/
+	Good registrar->http://en.gandi.net/
+	Good registrar->http://www.dreamhost.com/
+
+2.) Web hosting
+
+	Checkout:	http://www.thefreecountry.com/webhosting/budget2.shtml	
+	
+	Good webhost--->http://www.dreamhost.com/

@@ -1,0 +1,35 @@
+/*
+*
+*			Quick C/C++ Syntax Reference 
+*
+*	This will server as a quick reference list of all the troubling
+*	syntax or special conventions found in C/C++. Bare in mind that
+*	The language is constantly evolving and I should check online
+* 	occasionally to understand and record the latest changes.
+*
+*	Last Updated: 05/24/15	
+*
+*/
+
+//---- C ----//
+
+#####
+Dereferencing and calling stuct/class method sugared syntax
+	// Gets the member called "bar" from the struct foo points to.
+	foo->bar == (*foo).bar 
+------
+
+//---- C++ --//
+
+#####
+Auto Keyword
+------
+
+#####
+"Press Enter to Continue"
+	std::cin.get()
+------
+
+#####
+Virtual Keyword
+------

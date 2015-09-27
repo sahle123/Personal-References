@@ -1,0 +1,18 @@
+Towers of Hanoi
+
+This program solves the Towers of Hanoi puzzle.
+
+Input: Number of disks initially on the source pin
+Output: Number of time the function towers is activated. 
+
+To compile:
+
+g++ towers-of-hanoi.cxx
+
+Try to figure of out how many time towers( ) is activated when the number
+of disks is 64.
+
+Ans: 2^(64) - 1. Thank you Professor Micheal
+
+Warning: Don't run the program for 64 disks.
+

@@ -1,0 +1,60 @@
+CSCI 4229 Final Project, Clank
+	Sahle Alturaigi
+========================
+
+Controls For program:
+	1 = Orthogonal
+	2 = Perspective (default)
+	0 = Front view of object
+
+	UP 				= Pan up
+	DOWN 			= Pan down
+	LEFT 			= rotate left
+	RIGHT 			= rotate right
+	SHIFT + UP 		= rotate up
+	SHIFT + DOWN 	= rotate down
+
+	q = zoom in
+	w = zoom out
+
+	a = toggles cartesian grid
+	s = toggles lighting
+
+	// The cool stuff is here //
+	d = standing animation (default)
+	f = waving animation 
+	g = "Praise the sun" animation
+	z = My old version of clank (You can see a big difference)
+	
+Summary:
+
+	* Time invested into Blender == 22 hours
+	* Time invested into OpenGL  == 34 hours (A LOT of refactoring had to be done)
+
+	This project was a lot of fun. (I had spent entire nights without sleeping)
+	I made my model inside Blender and all the work I did in their is entirely my own. 
+	I did not take from anybody else--that is why I have quite a few hours logged into Blender. 
+	Once I had created my objects in Blender and set their origin points correctly, I called them 
+	inside separate display lists in which I had animations performed on. Most of the logic for 
+	this project is inside my header file "clank_builder.h". I had do so much refactoring to get 
+	this to work correctly and keep my code neat. The most important methods inside my class are 
+	"compile_clank" and all the methods that end in "_render". So to speak, "compile_clank" sort 
+	of worked as an int main for my class where it would call the right animation from class. The 
+	animation is also handled as a function of time--NOT as a value that gets incremented. I 
+	initially had my animations as the latter and to my dismay, when I overclocked my laptop, 
+	the animations went wildly fast and that worried because the animation speed was entirely dependent
+	on a persons processor. To remedy this, I used glutGet(GLUT_ELAPSED_TIME) to get the proper amount 
+	of time elapsed and with that I made an algorithm to redraw the object at the correct time frames 
+	to keep the animation smooth and consistent.
+
+	If you want to see the amount of progress I made, press the "Z" key to see the difference 
+	between my first Clank object and my current one.
+
+	Lastly, I am a little sad I could not invest more time into this project. I am taking 19 credit 
+	hours this semester and I almost dropped this class because of it. I am glad I didn't. This is the 
+	best I can do for now. Thank you for a great a semester!
+
+Side Notes:
+
+	* I attached the pictures of how I ideally wanted my model to look
+	* I also attached the mocks I made to flesh out my model and how to do the animations

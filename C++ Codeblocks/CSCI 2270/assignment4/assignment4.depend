@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1340475980 source:c:\users\admin\documents\code_blocks_projects\assignment4\bst_test.cpp
+	<iostream>
+	<cstdlib>
+	"bst.h"
+
+1340476560 c:\users\admin\documents\code_blocks_projects\assignment4\bst.h
+	<iostream>
+	<cstdlib>
+
+1336028490 c:\users\admin\documents\code_blocks_projects\assignment4\jacobs_header.h
+	<iostream>
+	<cstdlib>
+	<list>
+
+1339935097 source:c:\users\admin\documents\code_blocks_projects\assignment4\bst_test_dummy.cpp
+	<iostream>
+	<cstdlib>
+	"bst.h"
+

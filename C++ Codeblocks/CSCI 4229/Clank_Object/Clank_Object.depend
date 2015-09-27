@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1382000279 source:c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_object\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<math.h>
+	"CU_shapes.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1381720950 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_object\glwindow_wrapper.h
+
+1382000337 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_object\cu_shapes.h
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+

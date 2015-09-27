@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1370384630 source:c:\users\admin\documents\code_blocks_projects\csci 2270\assignment2\main.cpp
+	"bank_ledger.h"
+
+1370386699 c:\users\admin\documents\code_blocks_projects\csci 2270\assignment2\account.h
+	<iostream>
+	<cstdlib>
+	<string.h>
+
+1369749092 source:c:\users\admin\documents\code_blocks_projects\csci 2270\assignment2\bank_ledger.cxx
+	<iostream>
+	<cstdlib>
+
+1374393824 c:\users\admin\documents\code_blocks_projects\csci 2270\assignment2\bank_ledger.h
+	"account.h"
+	<string.h>
+	<iostream>
+
+1370375061 source:c:\users\admin\documents\code_blocks_projects\csci 2270\assignment2\input1.cxx
+	<iostream>
+	<cstdlib>
+

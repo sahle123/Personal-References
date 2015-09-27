@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1344722652 source:c:\users\admin\documents\code_blocks_projects\e_journal\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<iomanip>
+	<string>
+	<iostream>
+	<cstdlib>
+	<string>
+

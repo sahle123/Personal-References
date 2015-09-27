@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1380267150 source:c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\lorentz attractor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<math.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+

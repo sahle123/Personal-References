@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1357154489 source:c:\users\admin\documents\code_blocks_projects\sdl projects\sdl project 3\main.cpp
+	<iostream>
+	<string>
+	"SDL.h"
+	"SDL_image.h"
+

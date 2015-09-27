@@ -1,0 +1,35 @@
+Sal-Nomad:Desktop NomadHome$ ping www.sahle-alturaigi.com >> ping_example.txt
+
+PING www.sahle-alturaigi.com (69.5.28.98): 56 data bytes
+64 bytes from 69.5.28.98: icmp_seq=0 ttl=49 time=366.787 ms
+64 bytes from 69.5.28.98: icmp_seq=1 ttl=49 time=241.187 ms
+64 bytes from 69.5.28.98: icmp_seq=2 ttl=49 time=263.942 ms
+64 bytes from 69.5.28.98: icmp_seq=3 ttl=49 time=287.617 ms
+64 bytes from 69.5.28.98: icmp_seq=4 ttl=49 time=242.479 ms
+64 bytes from 69.5.28.98: icmp_seq=5 ttl=49 time=332.620 ms
+64 bytes from 69.5.28.98: icmp_seq=6 ttl=49 time=251.785 ms
+64 bytes from 69.5.28.98: icmp_seq=7 ttl=49 time=381.123 ms
+64 bytes from 69.5.28.98: icmp_seq=8 ttl=49 time=301.014 ms
+64 bytes from 69.5.28.98: icmp_seq=9 ttl=49 time=247.310 ms
+64 bytes from 69.5.28.98: icmp_seq=10 ttl=49 time=234.568 ms
+64 bytes from 69.5.28.98: icmp_seq=11 ttl=49 time=293.867 ms
+64 bytes from 69.5.28.98: icmp_seq=12 ttl=49 time=291.151 ms
+
+--- www.sahle-alturaigi.com ping statistics ---
+13 packets transmitted, 13 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 234.568/287.342/381.123/46.196 ms
+
+Sal-Nomad:Desktop NomadHome$ ping -D -s 100 www.sahle-alturaigi.com >> ping_example.txt
+
+PING www.sahle-alturaigi.com (69.5.28.98): 100 data bytes
+108 bytes from 69.5.28.98: icmp_seq=0 ttl=49 time=291.926 ms
+108 bytes from 69.5.28.98: icmp_seq=1 ttl=49 time=314.786 ms
+108 bytes from 69.5.28.98: icmp_seq=2 ttl=49 time=338.210 ms
+108 bytes from 69.5.28.98: icmp_seq=3 ttl=49 time=259.678 ms
+108 bytes from 69.5.28.98: icmp_seq=4 ttl=49 time=282.066 ms
+108 bytes from 69.5.28.98: icmp_seq=5 ttl=49 time=307.451 ms
+108 bytes from 69.5.28.98: icmp_seq=6 ttl=49 time=334.440 ms
+
+--- www.sahle-alturaigi.com ping statistics ---
+7 packets transmitted, 7 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 259.678/304.080/338.210/26.231 ms

@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1189868556 source:c:\users\admin\documents\code_blocks_projects\assignment3\main.cpp
+	<iostream>
+
+1333942810 source:c:\users\admin\documents\code_blocks_projects\assignment3\sorted_bag_test.cxx
+	<iostream>
+	<cstdlib>
+	<list>
+	"sorted_bag.h"
+
+1333943081 c:\users\admin\documents\code_blocks_projects\assignment3\sorted_bag.h
+	<iostream>
+	<cstdlib>
+	<list>
+
+1333697072 source:c:\users\admin\documents\code_blocks_projects\assignment3\template_prac.cxx
+	<iostream>
+	<list>
+
+1333697072 source:c:\users\admin\documents\code_blocks_projects\csci 2270\assignment3\template_prac.cxx
+	<iostream>
+	<list>
+
+1333942810 source:c:\users\admin\documents\code_blocks_projects\csci 2270\assignment3\sorted_bag_test.cxx
+	<iostream>
+	<cstdlib>
+	<list>
+	"sorted_bag.h"
+
+1369655668 c:\users\admin\documents\code_blocks_projects\csci 2270\assignment3\sorted_bag.h
+	<iostream>
+	<cstdlib>
+	<list>
+

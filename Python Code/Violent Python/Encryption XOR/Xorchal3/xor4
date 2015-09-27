@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+import sys, string
+
+fileNumber = 0
+
+if len(sys.argv) != 3:
+	print "\nUssage: ./xor4 infile outfile"
+	print "This will enumerate from 0x00 to 0xFF"
+	print "For hexadecimal keys, use $'\\x01'\n"
+	exit()
+
+g = open(str(sys.argv[2]), "a")
+
+for leKey in xrange(0,256):
+
+	fileName = "Image" + str(fileNumber) + ".png"
+
+	f = open(str(sys.argv[1]), "rb")
+	h = open(str(fileName), "wb")
+	k = ord(chr(leKey))
+	byte = f.read(1)
+	
+	try: 
+		printMessage = "\n\nUsing key: " + str(leKey) + "\n"
+		g.write(printMessage)
+		g.write("Decoded Message: ")
+
+		while byte != "":
+			xbyte = ord(byte) ^ k	
+			g.write(chr(xbyte))
+			h.write(chr(xbyte))
+			byte = f.read(1)
+			print "Text deciphered " + str(byte) + " " + str(xbyte)
+
+	finally:
+		f.close()
+		h.close()
+
+	fileNumber += 1 
+
+f.close()
+g.close()

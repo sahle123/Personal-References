@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1386996350 source:c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_final\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<math.h>
+	<string>
+	"clank_builder.h"
+	"ObjTex_loader.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1386671431 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_final\clank_builder.h
+	<stdio.h>
+	<stdlib.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1385716615 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_final\glwindow_wrapper.h
+
+1386413801 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_final\objtex_loader.h
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+

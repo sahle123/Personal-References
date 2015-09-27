@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1357673831 source:c:\users\admin\documents\code_blocks_projects\io file structures\main.cpp
+	<iostream>
+	<conio.h>
+	<fstream>
+
+1357673935 source:c:\users\admin\documents\code_blocks_projects\io file structures\clearscreen.cpp
+	<windows.h>
+	"clearscreen.h"
+
+1357674313 c:\users\admin\documents\code_blocks_projects\io file structures\clearscreen.h
+
+1357673935 source:c:\users\admin\documents\code_blocks_projects\references\io file structures\clearscreen.cpp
+	<windows.h>
+	"clearscreen.h"
+
+1357674313 c:\users\admin\documents\code_blocks_projects\references\io file structures\clearscreen.h
+
+1357946788 source:c:\users\admin\documents\code_blocks_projects\references\io file structures\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<conio.h>
+	"ClearScreen.h"
+	"directory_maker.h"
+
+1357947895 c:\users\admin\documents\code_blocks_projects\references\io file structures\directory_maker.h
+	<iostream>
+	<string>
+	<cstring>
+	<direct.h>
+

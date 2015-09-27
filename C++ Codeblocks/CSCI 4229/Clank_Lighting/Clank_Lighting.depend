@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1385803927 source:c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_lighting\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<math.h>
+	<string>
+	"clank_builder.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1385805208 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_lighting\clank_builder.h
+	<stdio.h>
+	<stdlib.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1382009550 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_lighting\my_shapes.h
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"glWindow_wrapper.h"
+
+1382001664 c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\clank_lighting\glwindow_wrapper.h
+

@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1355304686 source:c:\users\admin\documents\code_blocks_projects\inheritance_simple\classes\father.cpp
+	<iostream>
+	"Father.h"
+	"Daughter.h"
+
+1355304511 c:\users\admin\documents\code_blocks_projects\inheritance_simple\classes\father.h
+
+1355303169 source:c:\users\admin\documents\code_blocks_projects\inheritance_simple\main.cpp
+	<iostream>
+	<cstdlib>
+	"classes/Father.h"
+	"classes/Daughter.h"
+
+1355302791 c:\users\admin\documents\code_blocks_projects\inheritance_simple\classes\daughter.h
+
+1355302804 source:c:\users\admin\documents\code_blocks_projects\inheritance_simple\classes\daughter.cpp
+	<iostream>
+	"Father.h"
+	"Daughter.h"
+

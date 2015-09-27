@@ -1,0 +1,38 @@
+#!/usr/bin/python
+
+import sys, string
+
+keyList = string.ascii_letters
+
+if len(sys.argv) != 3:
+	print "\nUssage: ./xor2 infile outfile"
+	print "This will enumerate each letter of the alphabet."
+	print "For hexadecimal keys, use $'\\x01'\n"
+	exit()
+
+g = open(str(sys.argv[2]), "a")
+
+for leKey in keyList:
+
+	f = open(str(sys.argv[1]), "rb")
+	k = ord(leKey)
+	byte = f.read(1)
+	
+	print leKey + " " + str(k)
+	
+	try: 
+		printMessage = "\n\nUsing key: " + str(leKey) + "\n"
+		g.write(printMessage)
+		g.write("Decoded Message: ")
+
+		while byte != "":
+			xbyte = ord(byte) ^ k	
+			g.write(chr(xbyte))
+			byte = f.read(1)
+			print "Text deciphered " + str(byte) + " " + str(xbyte)
+
+	finally:
+		f.close()
+
+f.close()
+g.close()

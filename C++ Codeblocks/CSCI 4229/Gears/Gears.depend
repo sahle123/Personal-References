@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1379046033 source:c:\users\sahle alturaigi\codeblocks c++ projects\csci 4229\gears\main.c
+	<math.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+

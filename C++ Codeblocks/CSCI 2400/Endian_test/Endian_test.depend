@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1346900708 source:c:\users\admin\documents\code_blocks_projects\endian_test\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+

@@ -1,0 +1,27 @@
+class Base {
+
+private: 
+  int myPrivateInt;
+protected: 
+  int myProtectedInt;
+public:
+  int myPublicInt;
+}
+
+class Derived : Base
+{
+public:
+  int foo1()  { return MyPrivateInt;} // Won't compile!
+  int foo2()  { return MyProtectedInt;} // OK  
+  int foo3()  { return MyPublicInt;} // OK
+};
+
+class Unrelated 
+{
+private:
+  Base B;
+public:
+  int foo1()  { return B.MyPrivateInt;} // Won't compile!
+  int foo2()  { return B.MyProtectedInt;} // Won't compile
+  int foo3()  { return B.MyPublicInt;} // OK
+};

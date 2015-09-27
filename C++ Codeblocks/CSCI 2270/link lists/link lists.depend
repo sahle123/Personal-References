@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1333232705 source:c:\users\admin\documents\code_blocks_projects\link lists\node.cxx
+	<iostream>
+	<cstdlib>
+	"node.h"
+
+1333232343 c:\users\admin\documents\code_blocks_projects\link lists\node.h
+	<iostream>
+	<cstdlib>
+	<cassert>
+
+1333232749 source:c:\users\admin\documents\code_blocks_projects\link lists\node_2_test.cxx
+	<iostream>
+	"node_2.h"
+
+1333232464 c:\users\admin\documents\code_blocks_projects\link lists\node_2.h
+	<iostream>
+

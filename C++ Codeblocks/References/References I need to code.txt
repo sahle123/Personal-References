@@ -1,0 +1,16 @@
+/*
+* 	C++11 References
+*		There are a lot and this list doesn't cover even half of it.
+*
+*	Last update: 12/01/14
+*/
+
+	- Initialization lists
+	- C++11 moves
+	- Lambda expressions (anonymous functions)
+	- Smart pointers
+	- T&& (double references in C++11)
+	- Enumerables
+	- Colon after constructor (Instantiation list)
+	- C++11 Attributes
+	- 

@@ -1,0 +1,4 @@
+
+- xorchal1 cipher key: L
+- xorchal2 cipher key: 239 or 0xEF
+- xorchal3 cipher key: 153 (Image153.png) 

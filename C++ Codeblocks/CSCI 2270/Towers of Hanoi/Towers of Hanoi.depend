@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1334641070 source:c:\users\admin\documents\code_blocks_projects\towers of hanoi\main.cpp
+	<iostream>
+	<cstdlib>
+	"towers_of_hanoi.h"
+
+1334640803 c:\users\admin\documents\code_blocks_projects\towers of hanoi\towers_of_hanoi.h
+	<iostream>
+	<cstdlib>
+	<assert.h>
+	<stack>
+
