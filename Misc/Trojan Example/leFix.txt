@@ -1,0 +1,7 @@
+How to fix the damage and free up the space?
+
+To remove the damage and free up the space, just type the following in the “run” dialog box:
+
+%systemroot%\system32
+
+Now search for the file “spceshot.dll“. Just delete it and you’re done. No need to re-format the hard disk.
