@@ -1,6 +1,5 @@
 #Regex_WheresWally.py
 #
-#
 #	LU: 09/27/15
 #
 
