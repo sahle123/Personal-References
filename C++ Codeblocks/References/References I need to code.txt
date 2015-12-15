@@ -13,4 +13,5 @@
 	- Enumerables
 	- Colon after constructor (Instantiation list)
 	- C++11 Attributes
-	- 
+	- rvalues and lvalues
+	- Red-black tree

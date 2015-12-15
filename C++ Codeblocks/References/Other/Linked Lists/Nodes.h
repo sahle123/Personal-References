@@ -54,6 +54,7 @@ public:
 
 	// The double const will make it so that whatever the pointer is pointing to,
 	// the values stored in what is being pointed can NOT be manipulated by the pointer.
+	// AND the pointer cannot be changed either.
 	node* get_link () {return link;}
 	const node* get_link() const {return link;}
 	value_type get_data () const {return data;}

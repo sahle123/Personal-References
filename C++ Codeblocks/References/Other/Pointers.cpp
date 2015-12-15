@@ -3,10 +3,25 @@
  *
  *       Created on: Feb 21, 2012
  *       Author: Sahle A. Alturaigi
+ *
+ *		& 	Reference operator. Similar to symbolic links; they can refer to a
+ *			variable, but once allocated, it cannot be changed. Deleting a reference
+ *			does NOT affect the original variable. Less powerful than pointers but
+ *			often used in conjunction.
+ *
+ *		* 	Dereference operator. This will return the value stored inside of the 
+ *			pointer. When declaring variables, using the * operator will declare 
+ *			that said variable is a pointer of some type. When we call the variable
+ *			again without the operator, we will get its address. When we use the *
+ *			once more, this will give us the value that it has been assigned to.
+ *
+ *		http://stackoverflow.com/questions/2336230/difference-between-const-pointer-and-reference
+ *		http://c-faq.com/decl/spiral.anderson.html
+ *
  */
 
 // Libraries
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 void pointers_to_static();
