@@ -1,0 +1,5 @@
+Defcon 23 violent python workshop notes
+
+- "Pressing enter to continue" defeats almost all anti-virus.
+- Check “Old classes” for today materials
+- https://samsclass.info/124/ViolentPython.shtml#projects

@@ -1,4 +1,4 @@
-# basic_net.py
+# basic_grab_banner.py
 #
 #	Basic reference on how to open a connectio and grab a banner.	
 #
