@@ -43,6 +43,8 @@ def most_frequent_item_count(collection):
 
 	return length_list.pop()
 
+##########################################################################################
+
 	#####
 	# More elegant answer. From superrafek, jastrzebskib
 	#####

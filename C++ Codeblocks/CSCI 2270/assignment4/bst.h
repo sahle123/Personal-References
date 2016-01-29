@@ -2,6 +2,7 @@
 *    Written by: Sahle A. Alturaigi
 *
 *    Date: Apr 25, 2012
+*    Modified: 01/28/16
 *    Binary search tree header.
 
 std::size_t tree_size(const bstNode<Item, Key>* root);
@@ -260,16 +261,23 @@ bool bstNode<Item, Key>::validate_bst(bstNode<Item, Key> *root)
      else return false;*/
 
 
+     //std::cout << "PING" << std::endl;
      if(root == NULL)
           return true;
 
-     return(validate_bst(root->left_child) && validate_bst(root->right_child));
-
-     if ((root->left_child == NULL) && (root->right_child == NULL))
+     else if ((root->left_child == NULL) && (root->right_child == NULL))
           return true;
 
-     if(((root->left_child->k) > (root->k)) || ((root->right_child->k) < (root->k)))
+     else if ((root->left_child == NULL) && (root->right_child != NULL))
+          return(validate_bst(root->right_child));
+
+     else if ((root->left_child != NULL) && (root->right_child == NULL))
+          return(validate_bst(root->left_child));
+
+     else if(((root->left_child->k) > (root->k)) || ((root->right_child->k) < (root->k)))
           return false;
+
+     return(validate_bst(root->left_child) && validate_bst(root->right_child));
 
 
      /* // Improved Validate function
@@ -282,7 +290,6 @@ bool bstNode<Item, Key>::validate_bst(bstNode<Item, Key> *root)
 
      int n = tree_size(root);
      Key *array = new Key[n]; */
-
 
 }
 

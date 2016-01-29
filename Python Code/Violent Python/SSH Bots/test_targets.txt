@@ -1,0 +1,14 @@
+# File to be used alongside SSH_botnet_example.py
+# Comments are stored on lines with octothorpe
+
+# Format of text should be as follows:
+# 	IP-address username password
+
+192.168.1.4 root toor
+192.168.1.5 root toor
+
+# Test cases for host with bad username/password
+192.168.1.3 clank ratchet
+192.168.1.4 drek toor
+192.168.1.4 root captainqwark
+

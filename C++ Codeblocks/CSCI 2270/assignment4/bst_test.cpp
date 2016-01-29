@@ -27,7 +27,7 @@ int main()
      cout << "Tree depth:  " << root_ptr->tree_depth(root_ptr) << endl; // Working
 
      // tree_copy: working
-     bstNode<int, size_t> *copy_root_ptr = copy_root_ptr->tree_copy(root_ptr);
+     bstNode<int, size_t> *copy_root_ptr = root_ptr->tree_copy(root_ptr);
      copy_root_ptr->inorder_processing(copy_root_ptr, print_out<int, size_t>);
 
      // tree_clear: working
@@ -78,7 +78,7 @@ int main()
      else
           cout << "This is a valid binary search tree." << endl;
 
-     bstNode<int, size_t> *copy2_root_ptr = copy2_root_ptr->tree_copy(root_ptr);
+     bstNode<int, size_t> *copy2_root_ptr = root_ptr->tree_copy(root_ptr);
      copy2_root_ptr->inorder_processing(copy2_root_ptr, print_out<int, size_t>);
 
      copy2_root_ptr->insert_node(copy2_root_ptr, 601, 6001);

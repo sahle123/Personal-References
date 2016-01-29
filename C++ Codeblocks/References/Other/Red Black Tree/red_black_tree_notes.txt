@@ -1,0 +1,29 @@
+Lecture notes from MIT open courses on Red-Black Trees
+	
+	LU: 01/28/16
+
+To continue->https://youtu.be/iumaOUqoSCk?t=19m7s
+other: https://www.cs.auckland.ac.nz/software/AlgAnim/red_black.html
+//----------------------------------------------------------------------------
+Properties of RB Trees:
+
+	* They are binary search trees (BST) with an extra field called the 'color field.'
+
+	* They satisfy the "red-black property"
+
+	* The Red-black property ensures that a RB Tree will always have logorithmic height. i.e. (log n) depth.
+
+	* A RB Tree with n keys has height H <= 2log(n+1)
+
+//----------------------------------------------------------------------------
+The Red-Black Property:
+
+	1.) Every node is either red or black colored.
+
+	2.) The root and the leaves are all black colored.
+
+	3.) Every red node has a black parent.
+
+	4.) A simple path from node X to a descendent leaf, all such nodes have the same number of black nodes (excluding X's node). This is known as the 'black-height'
+
+//----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 #####################################################################
 #	Ref.py
-# This will serve as a referrence program to help me bettr
+# This will serve as a referrence program to help me better
 # understand python. 
 #
 # Python is a dynamic, interpreted language. Source code does 
@@ -33,12 +33,11 @@
 # the program
 #if __name__ == '__main__':
 #	main()
-# 
-# This is always needed apparently... Will learn of it later.
+#
 
 #####################################################################
 
-# import modules used here -- sys is a very standard module.
+# import modules used here -- sys is a module used to take in system commands.
 import sys
 
 # Gather our code in a main() function
