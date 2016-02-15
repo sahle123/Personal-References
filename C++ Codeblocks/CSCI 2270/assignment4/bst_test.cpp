@@ -92,6 +92,7 @@ int main()
      cout << "Preorder: " << endl;
      root_ptr->preorder_processing(root_ptr, print_out<int, size_t>);
 
+     cout << "Inorder: " << endl;
      copy2_root_ptr->inorder_processing(copy2_root_ptr, print_out<int, size_t>);
 
      cout << "Tree depth: " << root_ptr->tree_depth(root_ptr) << endl;
@@ -108,7 +109,7 @@ int main()
           cout << "A node with this key value is present\n";
      else
           cout << "that node could not be found\n";
-
+     
      root_ptr->insert_node(root_ptr, 60, 600);
      root_ptr->insert_node(root_ptr, 2000, 20000);
      root_ptr->insert_node(root_ptr, 5000, 50000);
@@ -119,6 +120,8 @@ int main()
      else
           cout << "this is not a binary search tree\n";
 
+     cout << "inorder: " << endl;
+     root_ptr->inorder_processing(root_ptr, print_out<int, size_t>);
      cout << "Postorder: " << endl;
      root_ptr->postorder_processing(root_ptr, print_out<int, size_t>);
 
@@ -134,14 +137,27 @@ int main()
      cout << "Postorder: " << endl;
      root_ptr->postorder_processing(root_ptr, print_out<int, size_t>);
 
-     root_ptr->remove_node(root_ptr, 900);
-
      cout << "Postorder: " << endl;
      root_ptr->postorder_processing(root_ptr, print_out<int, size_t>);
 
-     root_ptr->remove_node(root_ptr, 100);
+     cout << "inorder: " << endl;
+     root_ptr->inorder_processing(root_ptr, print_out<int, size_t>);
 
+     cout << "Removing nodes... 900 100 100 5000" << endl;
+     root_ptr->remove_node(root_ptr, 900);
+     root_ptr->remove_node(root_ptr, 100);
+     root_ptr->remove_node(root_ptr, 100);
      root_ptr->remove_node(root_ptr, 5000);
+
+     cout << "inorder: " << endl;
+     root_ptr->inorder_processing(root_ptr, print_out<int, size_t>);
+     cout << "Tree depth: " << root_ptr->tree_depth(root_ptr) << endl;
+
+     cout << "balancing BST" << endl;
+     root_ptr->balance_bst(root_ptr);
+     cout << "Tree depth: " << root_ptr->tree_depth(root_ptr) << endl;
+     cout << "inorder: " << endl;
+     root_ptr->inorder_processing(root_ptr, print_out<int, size_t>);
 
      cout << "Postorder: " << endl;
      root_ptr->postorder_processing(root_ptr, print_out<int, size_t>);

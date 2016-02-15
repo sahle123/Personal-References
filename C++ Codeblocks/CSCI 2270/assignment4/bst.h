@@ -2,8 +2,12 @@
 *    Written by: Sahle A. Alturaigi
 *
 *    Date: Apr 25, 2012
-*    Modified: 01/28/16
+*    Modified: 02/15/16
 *    Binary search tree header.
+*
+*    Credit for remove_node goes to: http://code.runnable.com/VUTjJDME6nRv_HOe/delete-node-from-bst-for-c%2B%2B
+*    without the above resource, I would have been trying to implement
+*    my remove_node method with an OOP approach which is sooooo inelegant...
 
 std::size_t tree_size(const bstNode<Item, Key>* root);
      // Precondition: root is a pointer to the root of a binary search tree.
@@ -98,7 +102,13 @@ public:
 //---------------------------------------------------------------------------------------------------------------------------------------------------
      /// Void Mod Functions.
      void insert_node(bstNode<Item, Key> *&root, const Key &number, const Item &entry);
-     void remove_node(bstNode<Item, Key>*& root, const Key& number);
+
+     void OLD_remove_node(bstNode<Item, Key>*& root, const Key& number);
+     // remove_node CANNOT remove root. Not implemented yet.
+     void OLD2_remove_node(bstNode<Item, Key>*& root, const Key& number);
+
+     // Remove node--functional approach
+     bstNode<Item, Key>* remove_node(bstNode<Item, Key>*& root, const Key& number);
 
      template<class Process>
      void inorder_processing(bstNode<Item, Key> *&root, Process f);
@@ -107,7 +117,7 @@ public:
      template<class Process>
      void postorder_processing(bstNode<Item, Key> *&root, Process f);
 
-     void balance_bst(bstNode<Item, Key>*& root); /// Has a tendency to cause SEG FAULTS
+     void balance_bst(bstNode<Item, Key>*& root);
      void tree_clear(bstNode<Item, Key>*& root);
 
      /// Bool Mod Functions
@@ -119,6 +129,8 @@ public:
      bstNode<Item, Key>* get_node(bstNode<Item, Key> *root, const Key& k) const;
      bstNode<Item, Key>* tree_copy(bstNode<Item, Key> *&root) const;
      std::size_t tree_size(const bstNode<Item, Key> *root);
+
+     /* Fixed tree depth. (02/14) */
      std::size_t tree_depth(const bstNode<Item, Key> *root);
      Key get_data() {return k;}
      Item get_item() {return it;}
@@ -131,12 +143,19 @@ private:
      bstNode<Item, Key> *right_child;    // Right Child. Initialized to NULL
 
      void bubble_sorter(bstNode<Item, Key> **a, int size);
-     void array_to_bst(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int &begin, int &end, int absolute_end);
+     void array_to_bst(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int begin, int end, int absolute_end);
      int bst_to_array(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int size);
+
+     // Gets minimum key value's parent in a subtree 
+     // bstNode* get_min_value_parent(bstNode<Item, Key>*& root);
+
+     bstNode* get_minimum_node(bstNode<Item, Key>*& root);
 
 
 }; // End of bstNode class
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void bstNode<Item, Key>::insert_node(bstNode<Item, Key> *&root, const Key &number, const Item &entry)
 {
@@ -149,54 +168,55 @@ void bstNode<Item, Key>::insert_node(bstNode<Item, Key> *&root, const Key &numbe
      else
           insert_node(root->right_child, number, entry);
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
-void bstNode<Item, Key>::remove_node(bstNode<Item, Key>*& root, const Key& number)
+bstNode<Item, Key>* bstNode<Item, Key>::remove_node(bstNode<Item, Key> *&root, const Key& number)
 {
-     if(root != NULL)
-     {
-          if(number < root->k)
-          {
-               remove_node(root->left_child, number);
-          }
-          else if(number > root->k)
-          {
-               remove_node(root->right_child, number);
-          }
-     }
+     if (root == NULL)
+          return NULL;
+
+     // Dive deeper if we haven't found correct node
+     else if (number < root->k)
+          root->left_child = remove_node(root->left_child, number);
+     else if (number > root->k)
+          root->right_child = remove_node(root->right_child, number);
+
+
+     // We found the correct node to remove
      else
      {
-          if(root->left_child != NULL && root->right_child != NULL)
+          // Case 1: No children
+          if((root->left_child == NULL) && (root->right_child == NULL))
           {
-               bstNode<Item, Key> *temp = root->right_child;
-               while(temp != NULL)
-               {
-                    root->k = temp->k;
-                    temp = temp->left_child;
-               }
-               remove_node(root->right_child, root->k);
-          }
-          else if(root->left_child != NULL)
-          {
-               bstNode<Item, Key> *temp = root->left_child;
-               bstNode<Item, Key> *temp2 = root->left_child;
-               temp = temp->left_child;
-               root = temp;
-               delete temp2;
-          }
-          else if(root->right_child != NULL)
-          {
-               bstNode<Item, Key> *temp = root->right_child;
-               bstNode<Item, Key> *temp2 = root->right_child;
-               temp = temp->left_child;
-               root = temp;
-               delete temp2;
-          }
-          else
                delete root;
-     }
-}
+               root = NULL;
+          }
+          // Case 2: Only one child
+          else if (root->left_child == NULL)
+          {
+               bstNode<Item, Key> *temp = root;
+               root = root->right_child;
+               delete temp;
 
+          } else if (root->right_child == NULL) {
+               bstNode<Item, Key> *temp = root;
+               root = root->left_child;
+               delete temp;
+          }
+          // Case 3: Node has two children (nodes or subtrees)
+          else
+          {
+               bstNode<Item, Key> *temp = get_minimum_node(root->right_child);
+               root->k = temp->k;
+               root->right_child = remove_node(root->right_child, temp->k);
+          }
+     }
+
+     return root;
+}
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 template<class Process>
 void bstNode<Item, Key>::inorder_processing(bstNode<Item, Key>*& root, Process f)
@@ -208,7 +228,9 @@ void bstNode<Item, Key>::inorder_processing(bstNode<Item, Key>*& root, Process f
      f(root->it, root->k);
      inorder_processing(root->right_child, f);
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 template<class Process>
 void bstNode<Item, Key>::preorder_processing(bstNode<Item, Key> *&root, Process f)
@@ -220,7 +242,9 @@ void bstNode<Item, Key>::preorder_processing(bstNode<Item, Key> *&root, Process 
      preorder_processing(root->left_child, f);
      preorder_processing(root->right_child, f);
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 template<class Process>
 void bstNode<Item, Key>::postorder_processing(bstNode<Item, Key>*& root, Process f)
@@ -232,7 +256,9 @@ void bstNode<Item, Key>::postorder_processing(bstNode<Item, Key>*& root, Process
      postorder_processing(root->right_child, f);
      f(root->it, root->k);
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void bstNode<Item, Key>::tree_clear(bstNode<Item, Key> *& root)
 {
@@ -244,7 +270,9 @@ void bstNode<Item, Key>::tree_clear(bstNode<Item, Key> *& root)
           root = NULL;
      }
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 bool bstNode<Item, Key>::validate_bst(bstNode<Item, Key> *root)
 {
@@ -292,7 +320,9 @@ bool bstNode<Item, Key>::validate_bst(bstNode<Item, Key> *root)
      Key *array = new Key[n]; */
 
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 template<class Process, class Param>
 bool bstNode<Item, Key>::process_node(bstNode<Item, Key> *&root, Key k, Process f, Param p)
@@ -309,11 +339,14 @@ bool bstNode<Item, Key>::process_node(bstNode<Item, Key> *&root, Key k, Process 
           return true;
      }
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 bstNode<Item, Key>* bstNode<Item, Key>::get_node(bstNode<Item, Key> *root, const Key& k) const
 {
      if(root == NULL) return NULL;
+
      else
      {
           if(k == root->k) return root;
@@ -323,7 +356,9 @@ bstNode<Item, Key>* bstNode<Item, Key>::get_node(bstNode<Item, Key> *root, const
                return get_node(root->left_child, k);
      }
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 bstNode<Item, Key>* bstNode<Item, Key>::tree_copy(bstNode<Item, Key> *&root) const
 {
@@ -338,14 +373,18 @@ bstNode<Item, Key>* bstNode<Item, Key>::tree_copy(bstNode<Item, Key> *&root) con
           return new bstNode<Item, Key> (root->k, root->it, l_ptr, r_ptr);
      }
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 typename std::size_t bstNode<Item, Key>::tree_size(const bstNode<Item, Key> *root)
 {
      if(root == NULL) return 0;
      return (1 + tree_size(root->left_child) + tree_size(root->right_child));
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 typename std::size_t bstNode<Item, Key>::tree_depth(const bstNode<Item, Key> *root)
 {
@@ -358,13 +397,13 @@ typename std::size_t bstNode<Item, Key>::tree_depth(const bstNode<Item, Key> *ro
 
           if(left_depth > right_depth)
                return (left_depth + 1);
-          else if (right_depth > left_depth)
-               return (right_depth + 1);
           else
-               return 0;
+               return (right_depth + 1);
      }
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void bstNode<Item, Key>::balance_bst(bstNode<Item, Key>*& root)
 {
@@ -377,43 +416,44 @@ void bstNode<Item, Key>::balance_bst(bstNode<Item, Key>*& root)
 
      size = bst_to_array(root, array, zero);
 
-     //bubble_sorter(array, size);
      root->tree_clear(root);
      zero = 0;
-     array_to_bst(root, array, zero, size, size); /// Program seg faults here
+     array_to_bst(root, array, zero, size, size); 
 
-     // To deallocate data allocated in the bst_to_array function.
-    /* for( int i = 0; i < size; ++i)
-     {
-          delete[]array[i];
-     }
-     delete[]array;*/
+     delete array;
 
 }
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
 // Note: The parameter: begin, never changes in the function
 template<class Item, class Key>
-void bstNode<Item, Key>::array_to_bst(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int &begin, int &end, int absolute_end)
+void bstNode<Item, Key>::array_to_bst(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int begin, int end, int absolute_end)
 {
      if(end < begin)
           return;
 
      int decrementation = ((begin + end) /2);
+
      root = a[decrementation];
+
      std::cout << "Decrementation value: " <<  decrementation << " absolute_end: " << absolute_end << std::endl;
      std::cout << "Item_array: " << root->get_item() << " Key_array: " << root->get_data() << std::endl;
+
      --decrementation;
 
-     array_to_bst(root->left_child,   a,  begin, decrementation, absolute_end);
-     decrementation = decrementation + 2;
+     array_to_bst(root->left_child, a,  begin, decrementation, absolute_end);
+
+     decrementation += 2;
 
      if(absolute_end <= decrementation)
           return;
 
      array_to_bst(root->right_child, a, decrementation, end, absolute_end);
 }
+//----------------------------------------------------------------------------
 
-
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 int bstNode<Item, Key>::bst_to_array(bstNode<Item, Key> *&root, bstNode<Item, Key> **a, int size)
 {
@@ -428,8 +468,26 @@ int bstNode<Item, Key>::bst_to_array(bstNode<Item, Key> *&root, bstNode<Item, Ke
 
      return size;
 }
+//----------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+template<class Item, class Key>
+bstNode<Item, Key>* bstNode<Item, Key>::get_minimum_node(bstNode<Item, Key>*& root)
+{
+     // Base case
+     if(root == NULL)
+          return root;
+     else if (root->left_child == NULL)
+          return root;
+     else
+          return get_minimum_node(root->left_child);
+
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 // Unused
 template<class Item, class Key>
 void bstNode<Item, Key>::bubble_sorter(bstNode<Item, Key> **a, int size)
@@ -454,4 +512,117 @@ void bstNode<Item, Key>::bubble_sorter(bstNode<Item, Key> **a, int size)
           }
      }
 }
+
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// This method is garbage. I have no idea what I was doing here in my 
+// sophomore year. \:
+template<class Item, class Key>
+void bstNode<Item, Key>::OLD_remove_node(bstNode<Item, Key>*& root, const Key& number)
+{
+     if(root != NULL)
+     {
+          if(number < root->k)
+          {
+               remove_node(root->left_child, number);
+          }
+          else if(number > root->k)
+          {
+               remove_node(root->right_child, number);
+          }
+     }
+     else
+     {
+          if(root->left_child != NULL && root->right_child != NULL)
+          {
+               bstNode<Item, Key> *temp = root->right_child;
+               while(temp != NULL)
+               {
+                    root->k = temp->k;
+                    temp = temp->left_child;
+               }
+               remove_node(root->right_child, root->k);
+          }
+          else if(root->left_child != NULL)
+          {
+               bstNode<Item, Key> *temp = root->left_child;
+               bstNode<Item, Key> *temp2 = root->left_child;
+               temp = temp->left_child;
+               root = temp;
+               delete temp2;
+          }
+          else if(root->right_child != NULL)
+          {
+               bstNode<Item, Key> *temp = root->right_child;
+               bstNode<Item, Key> *temp2 = root->right_child;
+               temp = temp->left_child;
+               root = temp;
+               delete temp2;
+          }
+          else
+               delete root;
+     }
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// RESTRICTION: Cannot delete root.
+template<class Item, class Key>
+void bstNode<Item, Key>::OLD2_remove_node(bstNode<Item, Key>*& root, const Key& number)
+{
+     // Base case
+     if (root == NULL)
+          return;
+
+     // Make sure tree is balanced first
+     balance_bst(root);
+
+     // I have no implementation for deleting root yet.
+     if (root->k == number)
+          return;
+
+     // Check right_child for key
+     else if (root->right_child->k == number)
+     {
+          // Check for right child
+          if(root->right_child->right_child != NULL)
+          {
+               // Get bottom left child from starting right child in a temp
+               bstNode<Item, Key> *temp;
+               temp = get_minimum_node(root);
+
+               if(temp != NULL)
+               {
+                    temp->right_child = root->right_child;
+                    temp->left_child = root->left_child;
+               }
+
+               //std::cout << "root->right_child BEFORE: " << root->right_child;
+               root->right_child = temp;
+               //std::cout << "root->right_child AFTER: " << root->right_child;
+               delete temp;
+          }
+
+     }
+
+     // Check left_child for key
+     else if (root->left_child->k == number)
+     {
+          return;
+     }
+
+     // Go down further in BST
+     else
+     {
+          remove_node(root->left_child, number);
+          remove_node(root->right_child, number);
+     }
+
+     return;
+}
+//----------------------------------------------------------------------------
+
+
 #endif // BST_H_INCLUDED
+

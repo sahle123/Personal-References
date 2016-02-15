@@ -1,9 +1,10 @@
 Lecture notes from MIT open courses on Red-Black Trees
 	
-	LU: 01/28/16
+	LU: 02/11/16
 
-To continue->https://youtu.be/iumaOUqoSCk?t=19m7s
+To continue->https://youtu.be/iumaOUqoSCk?t=58m17s
 other: https://www.cs.auckland.ac.nz/software/AlgAnim/red_black.html
+other: http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap14.htm
 //----------------------------------------------------------------------------
 Properties of RB Trees:
 
@@ -25,5 +26,158 @@ The Red-Black Property:
 	3.) Every red node has a black parent.
 
 	4.) A simple path from node X to a descendent leaf, all such nodes have the same number of black nodes (excluding X's node). This is known as the 'black-height'
+
+//----------------------------------------------------------------------------
+# Assume x.right != NIL
+Left-Rotate(T, x) pseudocode:
+	y = x.right 			// Assign new temporary variable y to x rightchild
+	x.right = y.left 		// x's right child becomes y's left child
+
+	if (y.left != NIL)		// Makes sure y's old left child points back to x.
+		y.left.parent = x
+
+	y.parent = x.parent
+
+	// 3 cases to check for about x's old parent
+	// Case 1: x was root
+	if(x.parent == NIL)
+		// Then y is simply the new root
+
+	// Case 2: if x was the left child of it's parent, have it point to y
+	else if (x == x.parent.left)
+		x.parent.left = y
+
+	// Case 3: if x was the right child of it's parent, have it point to y
+	else
+		x.parent.right = y
+
+	// Final step is to link x node and y node with each other
+	y.left = x
+	x.parent = y
+
+	return
+
+//----------------------------------------------------------------------------
+# Assume x.left != NIL
+Right-Rotate(T, x) pseudocode:
+	y = x.left 			// Assign x's left child to new temporary var
+	x.left = y.right 	// y's left child becomes x's left child
+
+	if(y.right != NIL) 	// Makes sure y's old right child points back to x
+		y.right.parent = x
+
+	y.parent = x.parent
+
+	// 3 cases to check for about x's old parent
+
+	// Case 1: x was root
+	if (x.parent == NIL)
+		// Then y is simply the new root
+
+	// Case 2: if x was the left child of it's parent, have it point to y
+	else if (x == x.parent.left)
+		x.parent.left = y
+
+	// Case 3: if x was the right child of it's parent, have it point to y
+	else
+		x.parent.right = y
+
+	// Final step is to link x node and y node with each other
+	y.right = x
+	x.parent = y
+
+
+	return
+//----------------------------------------------------------------------------
+RB-Insert(T, x) pseudocode:
+	Tree-Insert(T, x)	// Standard tree-insert
+	x.color = RED
+	while (x.parent != NIL) AND (x.parent.color == RED) 
+		if x.parent == x.parent.parent.left 	// If x's parent is the left
+												// child of parent's parent.
+			y = x.parent.parent.right
+
+			// Case 1
+			if y .color == RED
+				x.parent.color = BLACK
+				y.color = BLACK
+				x.parent.parent.color = RED
+				x = x.parent.parent
+
+			// Case 2
+			elif x == x.parent.right
+				x = x.parent
+				Left-Rotate(T, x)
+
+			// Case 3
+			else
+				x.parent.color = BLACK
+				x.parent.parent.color = RED
+				Right-Rotate(T, x.parent.parent)
+
+		else // x.parent == x.parent.parent.right
+
+			y = x.parent.parent.left
+
+			// Case 1
+			if y.color == RED
+				x.parent.color = BLACK
+				x.parent.parent.color = RED
+				x = x.parent.parent
+
+			// Case 2
+			elif x == x.parent.left
+				x = x.parent
+				Right-Rotate(T, x)
+
+			// Case 3
+			else
+				x.parent.color = BLACK
+				x.parent.parent.color = RED
+				Left-Rotate(T, x.parent.parent)
+
+	T.root.color = BLACK
+
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+# Incomplete
+Insert(x) pseudocode:
+
+// T = Red-Black tree; x = New node value to insert
+
+RB-insert(T, x):
+	Tree-insert(T, x) 	// Standard insert x into tree
+	x.color = RED 		// Assign RED to x
+	while (x != T.root) AND (x.color == RED):
+
+		// There are 3 cases to consider
+
+		// Case A (check notebook)
+		if p[x] == left_child(p[p[x]]): // p[x] means parent of x
+			y = right_child(p[p[x]]) 	// Look at right grandchild
+			if y.color == RED:
+				// Case 1...
+
+			else if x == right_child(p[x])
+				// Case 2...
+			// Case 3
+
+		// Case B, the reverse of Case A (check notebook)
+		else if p[x] == right_child(p[p[x]]):
+			y = left_child(p[p[x]])
+			if y.color == RED:
+				// Case 1...
+			else if x == left_child(p[x])
+				// Case 2...
+			// Case 3...
+
+
+		//
+
+	// We cannot have a root with the color RED.
+	// This still allows us to satisfy all he RBT properties.
+	if T.root.color == RED:	
+		T.root.color = BLACK
 
 //----------------------------------------------------------------------------

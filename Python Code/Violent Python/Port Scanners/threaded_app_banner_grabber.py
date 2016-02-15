@@ -7,7 +7,7 @@
 #
 #	Ref: Violent Python, TJ O'Conner (Modified)
 #
-#	LU: 12/22/15
+#	LU: 02/02/16
 
 import argparse
 import socket
@@ -21,12 +21,12 @@ SCREEN_LOCK = Semaphore(value=1)
 
 # --------------------------------------------------------------------------- #
 # Helper function for portScan()
-# Sends the message "ViolentPythonTestBaby" and waits for result from server.
+# Sends the message "Ciao" and waits for result from server.
 def connectionScan(tgtHost, tgtPort):
 	try:
 		connSocket = socket(AF_INET, SOCK_STREAM)
 		connSocket.connect((tgtHost, tgtPort))
-		connSocket.send("ViolentPythonTest!!!!\r\n")
+		connSocket.send("Ciao\r\n")
 		results = connSocket.recv(128)
 
 		# We need to acquire a lock whenever we print to ensure
