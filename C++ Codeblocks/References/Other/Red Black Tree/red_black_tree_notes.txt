@@ -43,11 +43,11 @@ Left-Rotate(T, x) pseudocode:
 	if(x.parent == NIL)
 		// Then y is simply the new root
 
-	// Case 2: if x was the left child of it's parent, have it point to y
+	// Case 2: if x was the left child of its parent, have it point to y
 	else if (x == x.parent.left)
 		x.parent.left = y
 
-	// Case 3: if x was the right child of it's parent, have it point to y
+	// Case 3: if x was the right child of its parent, have it point to y
 	else
 		x.parent.right = y
 

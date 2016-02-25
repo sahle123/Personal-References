@@ -1,0 +1,7 @@
+admin:admin
+admin:password
+administrator:password
+root:admin
+root:toor
+guest:guest
+root:root

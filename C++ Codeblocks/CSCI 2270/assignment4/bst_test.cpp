@@ -2,12 +2,13 @@
 *    Written By: Sahle A. Alturaigi
 *
 *    Date: Apr 25, 2012
+*    Modified: 02/16/16
 *    Binary search tree implementation file.
 *
 */
 
-#include<iostream>
-#include<cstdlib>
+#include <iostream>
+#include <cstdlib>
 #include "bst.h"
 using namespace std;
 
@@ -17,6 +18,8 @@ template<class Item, class Key>
 void add_it(Item &data, Key &k);
 template<class Item, class Key>
 void multi(Item &data, Key &k);
+
+//----------------------------------------------------------------------------
 
 int main()
 {
@@ -72,7 +75,7 @@ int main()
      // tree_size: Working
      cout << "\nTree size: " << root_ptr->tree_size(root_ptr) << endl;
 
-      bool validation2 = root_ptr->validate_bst(root_ptr);
+     bool validation2 = root_ptr->validate_bst(root_ptr);
      if(!validation2)
           cout << "Error, this is an invalid binary search tree." << endl;
      else
@@ -168,15 +171,22 @@ int main()
 
      cout << "copy2_ptr tree size: "<< copy2_root_ptr->tree_size(copy_root_ptr) << endl;
 
+     // Free up tree to remove memory leaks.
+     root_ptr->tree_clear(root_ptr);
+     copy_root_ptr->tree_clear(copy_root_ptr);
+     copy2_root_ptr->tree_clear(copy2_root_ptr);
+
      return EXIT_SUCCESS;
 }
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void print_out(Item &data, Key &k)
 {
      cout << "Item: " << data << "  " << "Key: " << k << endl;
 }
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void add_it(Item &data, Key &k)
 {
@@ -186,6 +196,7 @@ void add_it(Item &data, Key &k)
      }
 }
 
+//----------------------------------------------------------------------------
 template<class Item, class Key>
 void multi(Item& data, Key& k)
 {
