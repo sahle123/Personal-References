@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162 Final Question 2</title>
+<script>
+
+function countOddNumbers(numbers) {
+
+  var count = 0;
+  for(var i = 0; i < numbers.length; i += 1)
+  {
+    if((numbers[i] % 2) == 1)
+      count += 1;
+  }
+
+  // this return is a placeholder (you should change it!)
+  return count;
+}
+
+// the following alert should show 3
+alert(countOddNumbers([1, 2, 3, 4, 5]));
+
+// the following alert should show 1
+alert(countOddNumbers([10, 12, 13, 14, 16]));
+
+</script>
+<body>
+</body>
+</html>

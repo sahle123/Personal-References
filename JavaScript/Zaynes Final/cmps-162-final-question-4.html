@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162 Final Question 5</title>
+<script>
+function fahrenheitToCelcius() {
+  var f = document.getElementById("fahrenheit").value;
+  var ans = ((5/9) * (f - 32))
+  alert(ans);
+  document.getElementById("celcius").value = ans;
+}
+
+function celciusToFahrenheit() {
+  var c = document.getElementById("celcius").value;
+  var ans = (((9/5) * c) + 32);
+  alert(ans);
+  document.getElementById("fahrenheit").value = ans;
+}
+</script>
+<body>
+  <input type="number" id="fahrenheit" /> - enter fahrenheit<br>
+  <input type="button" value="submit" onclick=fahrenheitToCelcius() />
+  or<br>
+  <input type="number" id="celcius"> - enter celcius<br>
+  <input type="button" value="submit" onclick=celciusToFahrenheit() />
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162 Final Question 1</title>
+<script>
+
+function getRandomCharacter(inputString) {
+  // implement your program here
+  var randNum = 0;
+  randNum = Math.floor(Math.random() * (inputString.length))
+
+  // this return is a placeholder (you should change it!)
+  return inputString.charAt(randNum);
+}
+
+// the following alert should show a random character, e.g., 'r'
+alert(getRandomCharacter("Hello World!"));
+
+// the following alert should show a random character, e.g., 'W'
+// most of the time it should be different from the first alert
+alert(getRandomCharacter("Hello World!"));
+
+</script>
+<body>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162 Final Question 3</title>
+<script>
+
+function Circle(radius) {
+  // complete the constructor
+  this.r = radius;
+
+  this.getArea = function() { return (Math.PI * this.r * this.r); }
+
+  this.getCircumference = function () { return (Math.PI * 2 * this.r); }
+}
+
+// implement the methods
+/*
+Circle.prototype.getArea = function () {
+  console.log("Radius is " + this.r);
+  var ans = (Math.PI * this.r * this.r);
+  return ans;
+}
+Circle.prototype.getCircumference = function () {
+  var ans2 = Math.PI * this.r * this.r;
+  return ans2;
+}
+*/
+
+// create the Circle object
+var circle = new Circle(10);
+// calculate area, not working yet!
+var area = circle.getArea();
+// calculate circumference, not working yet!
+var circumference = circle.getCircumference();
+// show output to user
+alert(area); // should be approximately 62.8
+alert(circumference); // should be approximately 314
+
+</script>
+<body>
+</body>
+</html>

@@ -1,0 +1,10 @@
+General JavaScript notes:
+LU: 04/25/16
+=========================
+
+Basic:
+  - JS code cannot be compiled locally unless one has node.js installed. Instead
+  one embeds or calls the code via an HTML file. Here is a relevant source:
+  https://www.quora.com/How-do-I-run-JavaScript-code
+
+  -

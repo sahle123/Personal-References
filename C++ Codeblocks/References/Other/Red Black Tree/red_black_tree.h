@@ -10,10 +10,11 @@
 *			2. (Complete More printing options
 *			3. Delete method
 *			4. (Complete) Processing for nodes
+*			5. Duplicate inserts segfaults program.
 *
 *	Status:	Semi-complete (missing delete method)
 *
-*	LU: 02/24/16
+*	LU: 03/14/16
 */
 
 // If C++ 98 or earlier is being used.

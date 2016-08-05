@@ -2,7 +2,7 @@
 * 	C++11 References
 *		There are a lot and this list doesn't cover even half of it.
 *
-*	Last update: 12/01/14
+*	Last update: 05/31/16
 */
 
 	- Initialization lists
@@ -15,3 +15,7 @@
 	- C++11 Attributes
 	- rvalues and lvalues
 	- Red-black tree
+	
+
+Completed References:
+	- Function pointers [05/31/16]

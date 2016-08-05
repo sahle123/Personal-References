@@ -1,10 +1,11 @@
 Lecture notes from MIT open courses on Red-Black Trees
 	
-	LU: 02/11/16
+	LU: 03/06/16
 
 To continue->https://youtu.be/iumaOUqoSCk?t=58m17s
 other: https://www.cs.auckland.ac.nz/software/AlgAnim/red_black.html
 other: http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap14.htm
+other: https://www.youtube.com/watch?v=CTvfzU_uNKE
 //----------------------------------------------------------------------------
 Properties of RB Trees:
 
@@ -139,45 +140,41 @@ RB-Insert(T, x) pseudocode:
 	T.root.color = BLACK
 
 //----------------------------------------------------------------------------
+# Note that nil[T] is a sentinel node. This is a node that points to nothing
+# and is meant to represent a leaf.
+BST-Delete(T, x) pseudocode:
+
+	if ((x.left == nil[T]) || (x.right == nil[T]))
+		y = x
+
+	else
+		y = Tree-Successor(T, x) //Find the inorder successor of x
+
+	if y.left != nil[T]
+		z = y.left
+	else
+		z = y.right
+
+	z.parent = y.parent
+
+	if y.parent == nil[T]
+		T.root = z
+	else if y == y.parent.left
+		y.parent.left = z
+	else
+		y.parent.right = z
+
+	if y != x
+		x.key = y.key
+	if y.color == BLACK
+		RB-Delete-Fixup(T, z)
+
+	return y
+
+
+//----------------------------------------------------------------------------
+RB-Delete-fixup(T, x) pseudocode:
+
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
-# Incomplete
-Insert(x) pseudocode:
-
-// T = Red-Black tree; x = New node value to insert
-
-RB-insert(T, x):
-	Tree-insert(T, x) 	// Standard insert x into tree
-	x.color = RED 		// Assign RED to x
-	while (x != T.root) AND (x.color == RED):
-
-		// There are 3 cases to consider
-
-		// Case A (check notebook)
-		if p[x] == left_child(p[p[x]]): // p[x] means parent of x
-			y = right_child(p[p[x]]) 	// Look at right grandchild
-			if y.color == RED:
-				// Case 1...
-
-			else if x == right_child(p[x])
-				// Case 2...
-			// Case 3
-
-		// Case B, the reverse of Case A (check notebook)
-		else if p[x] == right_child(p[p[x]]):
-			y = left_child(p[p[x]])
-			if y.color == RED:
-				// Case 1...
-			else if x == left_child(p[x])
-				// Case 2...
-			// Case 3...
-
-
-		//
-
-	// We cannot have a root with the color RED.
-	// This still allows us to satisfy all he RBT properties.
-	if T.root.color == RED:	
-		T.root.color = BLACK
-
 //----------------------------------------------------------------------------

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162 Final Question 5</title>
+<script>
+function validateSSN() {
+
+  var ssn = document.getElementById("SSNField").value;
+  //var substring = ssn.match(/[0-9]*/g);
+  //var substring = ssn.replace("-", "");
+
+  if(ssn.length != 11) {
+    alert("[-] Error: SSN is not 11 characters long");
+    return;
+  }
+  else if ((ssn.charAt(3) != "-") || (ssn.charAt(6) != "-")) {
+    alert("[-] Error: Dashes are missing in the 4th and/or 7th character(s)");
+    return;
+  }
+  else {
+    // Checking if all characters are numbers
+    for(var i = 0; i < ssn.length; i += 1)
+    {
+      if((i == 3) || (i == 6)) // Skip the dashes
+        continue;
+      else if ((ssn.charAt(i) == 0)||
+              (ssn.charAt(i) == 1)||
+              (ssn.charAt(i) == 2)||
+              (ssn.charAt(i) == 3)||
+              (ssn.charAt(i) == 4)||
+              (ssn.charAt(i) == 5)||
+              (ssn.charAt(i) == 6)||
+              (ssn.charAt(i) == 7)||
+              (ssn.charAt(i) == 8)||
+              (ssn.charAt(i) == 9))
+        continue;
+      else {
+        alert("[-] Error: SSN has a non-number character in it.");
+        return;
+      }
+    }
+    alert("[+] This is a valid SSN");
+  }
+  // make sure the total number of characters is 11
+  // make sure the 4th and and 7th characters are dashes
+  // make sure the rest of the characters are numbers
+}
+</script>
+<body>
+  <input type="text" id="SSNField">
+  <input type="button" value="Check" onclick="validateSSN();">
+  <br><br>
+  <div id="statusDiv">
+    Please enter an SSN and press Check!
+  </div>
+</body>
+</html>

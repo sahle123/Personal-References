@@ -1,10 +1,11 @@
-#ifndef RBT_TEST_H_INCLUDE
-#define RBT_TEST_H_INCLUDE
+#ifndef RBT_BROKEN_DELETE_H_INCLUDE
+#define RBT_BROKEN_DELETE_H_INCLUDE
 
-/* rbt_test.h
+/* rbt_broken_delete.h
 *
-*	TEST CODE
-*	03/18: Major reimplementation of delete method--NOT refactor.
+*	Failed implementation code for delete method in RBT.
+*   This code is only a reference in case I need to revert
+*   back code.
 *
 *	LU: 03/17/16
 */
@@ -15,7 +16,6 @@
 #endif
 
 #include <iostream>
-//#include "rbt_delete.h" ## Add delete header file later
 
 typedef unsigned int k_int; // Datatype to represent key values in nodes.
 
@@ -60,9 +60,9 @@ private:
 	void cleanup_helper(Node *&root);
 
 	/* remove() helper section */
-	void bst_remove(Node *&root, const k_int &targetKey, Node *&treeReference);
-	void remove_one_child_case(Node *&root, Node *&treeReference); // Handles first two cases or determines if there is 'double black' case.
-	void double_black_case(Node *&root, Node *&treeReference);
+	void bst_remove(Node *&root, const k_int &targetKey);
+	void remove_one_child_case(Node *&root, const k_int &targetKey); // Handles first two cases or determines if there is 'double black' case.
+	void double_black_case(Node *&root, const k_int &targetKey);
 	k_int getSmallestNode(Node *&root); // Returns smallest node's key in subtree.
 
 	
@@ -214,7 +214,7 @@ void RB_tree::remove(const k_int &targetKey)
 	}
 
 	std::cout << "[+] Deleting key (" << targetKey << ") from tree" << std::endl;
-	bst_remove(root, targetKey, root);
+	bst_remove(root, targetKey);
 
 }
 // ----------------------------------------------------------------------------
@@ -522,10 +522,8 @@ void RB_tree::cleanup_helper(Node *&root)
 }
 // ----------------------------------------------------------------------------
 // private: bst_remove()
-// The parameter treeReference is the reference pointer to the root node
-// of the entire RBT.
 // ----------------------------------------------------------------------------
-void RB_tree::bst_remove(Node *&root, const k_int &targetKey, Node *&treeReference)
+void RB_tree::bst_remove(Node *&root, const k_int &targetKey)
 {
 	
 	Node* currentNode = root;
@@ -542,94 +540,169 @@ void RB_tree::bst_remove(Node *&root, const k_int &targetKey, Node *&treeReferen
 		if(!((currentNode->left != nullptr) && (currentNode->right != nullptr)))
 		{
 			std::cout << "[DEBUG] Running remove_one_child" << std::endl;
-			remove_one_child_case(currentNode, treeReference);
+			remove_one_child_case(currentNode, targetKey); // try using root if current node doesn't work properly
 		}
-		// Case 3: Two non-null children present. Find inorder successor
-		// in right subtree and assign it to the current root node.
-		// Next, use the successor's key as the new targetKey to be deleted.
-		// This should eventually lead to a case where we have 0 or 1 
-		// (non-null) children.
+		//	Case 3: If node to be deleted has two non-null children, replace
+		//	in order successor. No recoloring should be required.
 		else
 		{
-			k_int inorderSuccessor = getSmallestNode(currentNode->right);
-			root->key = inorderSuccessor;
-			bst_remove(currentNode->right, inorderSuccessor, treeReference);
+			k_int inorderSuccessor = getSmallestNode(currentNode);
+			if(inorderSuccessor != 0)
+			{	
+				std::cout << "[+] inorderSuccessor for " << currentNode->key << " is: " << inorderSuccessor << std::endl;
+				currentNode->key = inorderSuccessor;
+			}
 		}
 	}
-	// Dig deeper in the RBT.
-	if (currentNode->key > targetKey)
-		bst_remove(currentNode->left, targetKey, treeReference);
-	else if (currentNode->key < targetKey)
-		bst_remove(currentNode->right, targetKey, treeReference);
-	
+	else
+	{
+		bst_remove(currentNode->left, targetKey);
+		bst_remove(currentNode->right, targetKey);
+	}
 }
 // ----------------------------------------------------------------------------
 // private: remove_one_child
-// Requires, at most, 0 or 1 (non-null) children in subtree.
+// Requires, at most, 0 or 1 non-null children in subtree.
 // Handles Cases 1, 2, or detects 'double black' case and runs subroutine.
-// Parameter 'root' is the reference pointer node we are going to delete.
+// Parameter 'root' is the reference subtree root node we are deleting.
+/// NOTE that targetKey is NOT used here. May need to remove at the end.
 // ----------------------------------------------------------------------------
-void RB_tree::remove_one_child_case(Node *&root, Node *&treeReference)
+void RB_tree::remove_one_child_case(Node *&root, const k_int &targetKey)
 {
+	/* Note: code here could be refactored for better readability, but
+	I feel the code present is robust with all these if statements constantly checking that exact states of the tree are met at all points. */
+
 	Node *currentNode = root;
 	Node *childDependency = nullptr;
 
-	// Determine if currentNode has 0 or 1 children and assign to local var.
-	if((currentNode->left != nullptr) && (currentNode->right == nullptr))
+	// Fringe case where node to be deleted is the root of the tree.
+	// and there is a "4-2-1-3" case or right-hand "4-2-1-3" case.
+	// Note the we will NOT delete root node since that is the responsiblity
+	// of cleanup() method.
+	/// Implement later
+	if(currentNode->parent == nullptr)
 	{
-		childDependency = currentNode->left;
-		childDependency->parent = currentNode->parent;
-		if(currentNode == currentNode->parent->left)
-			currentNode->parent->left = childDependency;
-	}
-	else if ((currentNode->left == nullptr) && (currentNode->right != nullptr))
-	{
-		childDependency = currentNode->right;
-		childDependency->parent = currentNode->parent;
-		if(currentNode == currentNode->parent->right)
-			currentNode->parent->right = childDependency;	
-	}
-	
-	
-	if((childDependency == nullptr) || (childDependency == NULL))
-	{
+		std::cout << "[DEBUG] CANNOT DELETE ROOT FOR NOW..." << std::endl;
+		//std::cout << "[DEBUG] Handling root node removal" << std::endl;
+		/*if(currentNode->left != nullptr)
+		{
+			currentNode = currentNode->left;
+			root->key = currentNode->key;
+			root->left = nullptr;
+
+			delete currentNode;
+			currentNode = NULL;
+		}
+		else if (currentNode->right != nullptr)
+		{
+			currentNode = currentNode->right;
+			root->key = currentNode->key;
+			root->right = nullptr;
+
+			delete currentNode;
+			currentNode = NULL;
+		}
+		else
+			cleanup();*/
 		return;
-		delete currentNode;
 	}
 
-	if(currentNode->color == BLACK)
+	// Determine if currentNode has 0 or 1 children and assign to local var.
+	if((currentNode->left != nullptr) && (currentNode->right == nullptr))
+		childDependency = currentNode->left;
+	else if ((currentNode->left == nullptr) && (currentNode->right != nullptr))
+		childDependency = currentNode->right;
+	// Else: Both children are nullptr, so childDependency stays nullptr
+		
+	// Setup connection between child and grandparent if applicable
+	// and handle Cases 1 and 2.
+	if(childDependency != nullptr)
 	{
-		if(childDependency->color == RED)
+		// Setup connection between child and grandparent.
+		if(currentNode == currentNode->parent->left)
+			currentNode->parent->left = childDependency;
+		else if (currentNode == currentNode->parent->right)
+			currentNode->parent->right = childDependency;
+		else
+		{
+			// Should be unreachable point.
+			std::cout << "[DEBUG] ERROR: check remove_one_child() method, childDependency Connection section" << std::endl;
+			return;
+		}
+
+		// Case 1: If node to be deleted is RED, then just delete RED node.
+		if(currentNode->color == RED)
+		{
+			delete currentNode;
+			return;
+		}
+
+		// Case 2: If node to be deleted is BLACK, but has one RED child,
+		// then replace it with that child and change color to BLACK.
+		else if ((currentNode->color == BLACK) && (childDependency->color == RED))
 		{
 			childDependency->color = BLACK;
-			//delete currentNode;
+			delete currentNode;
+			return;
+		}
+		/* 'DOUBLE BLACK' situation. 
+		There are 6 sub-cases and we start at case 1. 
+		Cases 1, 4, and 6 are terminating cases. 
+		If they run, the RBT should be valid. 
+
+		This section is detailed and you should refer to your notes for
+		graphical information and reasoning. 
+		*/
+		else
+		{
+			// Might need a reference to root of RB tree.
+			double_black_case(root, targetKey);
+		}
+	}
+	// Bottom tier node. Just delete it. Nice and simple :)
+	else 
+	{
+		if(currentNode->parent->left == currentNode)
+		{
+			currentNode->parent->left = nullptr;
+			delete currentNode;
+			return;
+		}
+		else if (currentNode->parent->right == currentNode)
+		{
+			currentNode->parent->right = nullptr;
+			delete currentNode;
+			return;
 		}
 		else
 		{
-			// 'Double black' situation
-			double_black_case(currentNode, treeReference);
+			// Should be unreachable point.
+			std::cout << "[DEBUG] ERROR: check remove_one_child() method, Bottom Tier Node section" << std::endl;
+			return;
 		}
+
 	}
 }
 // ----------------------------------------------------------------------------
 // private: double_black_case()
 // ----------------------------------------------------------------------------
-void RB_tree::double_black_case(Node *&root, Node *&treeReference)
+void RB_tree::double_black_case(Node *&root, const k_int &targetKey)
 {
 	std::cout << "[DEBUG] DOUBLE BLACK CASE" << std::endl;
 }
 // ----------------------------------------------------------------------------
 // private: getSmallestNode()
-// Returns key of smallest node in subtree.
-/// Note: Could possibly make parameter non-reference.
+// Finds the smallest node in the given subtree. If found, then the smallest
+// node is deleted and its key value is returned. Otherwise, 0 is returned
+// to indicate an error or empty tree.
 // ----------------------------------------------------------------------------
 k_int RB_tree::getSmallestNode(Node *&root)
 {
-	Node *subtree = root;
+	Node *subtree = root->right;
 	Node *prev = nullptr;
+	k_int result = 0;
 
 	std::cout << "[DEBUG] Running getSmallestNode()" << std::endl;
-
 	// Find the in order successor node.
 	while(subtree != nullptr)
 	{
@@ -641,15 +714,41 @@ k_int RB_tree::getSmallestNode(Node *&root)
 	{
 		// Double checking to make sure child is left of parent.
 		// This step is unnecessary, but I like to be safe.
-		//if (prev == prev->parent->left)
-		return prev->key;
-		//else
-		//	std::cout << "[-] Could not find inorderSuccessor" << std::endl;
+		if (prev == prev->parent->left)
+		{
+			// Double checking that the RB tree is valid. 
+			// Again, this is an unnecessary step, but I do it for safety.
+			if (prev->right != nullptr)
+			{
+				std::cout << "[-] Issue in findSmallestNode(). RB Tree appears to be in violation." << std::endl;
+				return 0;
+			}
+
+			// Uncouple the node and its parent then proceed to delete node
+			// and return the key value.
+			prev->parent->left = nullptr;
+			prev->parent = nullptr;
+			result = prev->key;
+			delete prev;
+			return result;	// We should get the key of the recently deleted node.
+		}
+		// Fringe case. At second last bottom tier of tree. Just make right 
+		// node the new parent. Still valid RBT.
+		else if(prev == prev->parent->right)
+		{
+			prev->parent->right = nullptr;
+			prev->parent = nullptr;
+			result = prev->key;
+			delete prev;
+			return result;
+		}
+		else
+			std::cout << "[-] Could not find inorderSuccessor" << std::endl;
 	}
-	return root->key;
+	return 0;
 }
 // ----------------------------------------------------------------------------// ----------------------------------------------------------------------------
-#endif // RBT_TEST_H_INCLUDE
+#endif // RBT_BROKEN_DELETE_H_INCLUDE
 
 
 // ~Fin
