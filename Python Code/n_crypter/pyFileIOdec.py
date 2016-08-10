@@ -4,7 +4,7 @@
 #
 #   Sahle "Nomad" Alturaigi
 #
-# LU: 08/05/16
+# LU: 08/07/16
 
 import os
 import re
@@ -15,7 +15,7 @@ import datetime
 import pdb
 
 F = []
-extList = ["\.txt", "\.jpg", "\.docx", "\.pages"]
+extList = ["\.txt", "\.jpg", "\.docx", "\.pages", "\.mp3"]
 DirSpace = "/Users/NomadHome/Desktop/htSandbox"
 
 def main():
@@ -77,8 +77,9 @@ def main():
                     continue
 
         # NOTE: DEBUG CODE
-        pdb.set_trace()
+        #pdb.set_trace()
         #break # Remove this later to dive deeper
+        
     print "----------"
     print "[*] Decryption completed"
 
