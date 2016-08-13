@@ -1,0 +1,27 @@
+Tests and notes for n_crypter
+LU: 08/13/16
+=============================
+
+NOTES:
+  n_crypter is almost fully functional, but the directory to be encrypted and the file extension to encrypt need to be specified in the code. A GUI might also be another good feature.
+
+Problems:
+  - pyinstaller does NOT work well with Tkinter.
+  - Consider focusing on separate platforms for n_crypter.
+    1) Mac OS X
+    2) Windows
+    3) Android
+    4) iOS
+
+Encryption tests:
+  - PDFs
+  - Applications
+
+
+Passed Tests: (i.e. decrypt successfully without any problems)
+  - Text files
+  - Pictures
+  - Files with spaces in their names
+  - Files in deeper directories
+  - .pages files
+  - Music files
